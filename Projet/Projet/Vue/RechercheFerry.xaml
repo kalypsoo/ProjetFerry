@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="Projet.Vue.RechercheFerry"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Projet.Vue"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource Locator}, Path=RechercheFerry}"
+    mc:Ignorable="d">
+
+    <Page.TopAppBar>
+        <CommandBar x:Uid="TopBarreRecherche" Content="" Background="#FF0097FF" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,150"/>
+    </Page.TopAppBar>
+
+    <ScrollViewer>
+        <StackPanel x:Name="ContenuPageRecherche" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <StackPanel x:Name="ContenuRechercheLieuDepart" Margin="70">
+                <TextBlock x:Uid="RechercheLieuDepart" Text="" Margin="15"/>
+                <ComboBox ItemsSource="{Binding Path=PaysDepart}" SelectedItem="{Binding Path=PaysDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15" />
+                <ComboBox ItemsSource="{Binding Path=VilleDepart}" SelectedItem="{Binding Path=VilleDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15"/>
+            </StackPanel>
+            <StackPanel x:Name="ContenuRechercheLieuArrivee" Margin="70">
+                <TextBlock x:Uid="RechercheLieuArrivee" Text="" Margin="15"/>
+                <ComboBox ItemsSource="{Binding Path=PaysArrivee}" SelectedItem="{Binding Path=PaysArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15" />
+                <ComboBox ItemsSource="{Binding Path=VilleArrivee}" SelectedItem="{Binding Path=VilleArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15"/>
+            </StackPanel>
+            <CalendarDatePicker x:Uid="RechercheDateDepart" Header="" Date="{Binding Path=DateDepart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            <TimePicker x:Uid="RechercheHeureDepart" Header="" />
+            <TimePicker x:Uid="RechercheHeureArrivee" Header="" />           
+            
+            <Button x:Uid="RechercheValider" Content="" Command="{Binding Rechercher}" />
+        </StackPanel>
+    </ScrollViewer>
+    
+</Page>
