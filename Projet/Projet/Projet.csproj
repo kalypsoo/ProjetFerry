@@ -104,6 +104,7 @@
     <Compile Include="Model\Models\Compagnie.cs" />
     <Compile Include="Model\Models\Ferry.cs" />
     <Compile Include="Model\Models\Gerant.cs" />
+    <Compile Include="Model\Services\VilleService.cs" />
     <Compile Include="VueModel\AccueilVueModel.cs" />
     <Compile Include="VueModel\RechercheFerryVueModel.cs" />
     <Compile Include="VueModel\VueModelLocator.cs" />
@@ -181,7 +182,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Services\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

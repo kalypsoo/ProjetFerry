@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Projet.Model;
+using Projet.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +24,7 @@ namespace Projet.VueModel
         public RechercheFerryVueModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            Rechercher = new RelayCommand(GoToAccueil, verifierFormulaire);  
+            Rechercher = new RelayCommand(GoToAccueil, verifierFormulaire);
         }
 
         // Getter & Setter 
@@ -35,8 +37,8 @@ namespace Projet.VueModel
                 {
                     paysDepartSelectionne = value;
                     Rechercher.RaiseCanExecuteChanged();
-                    InitVilleDepart(value);
-                    //RaisePropertyChanged("PaysDepSelec");
+                    InitVille(villeDepart,value,true);
+                    RaisePropertyChanged("PaysDepSelec");
                 }        
             }
         }
@@ -51,7 +53,8 @@ namespace Projet.VueModel
                 {
                     paysArriveeSelectionne = value;
                     Rechercher.RaiseCanExecuteChanged();
-                    InitVilleArrivee(value);                    
+                    InitVille(villeArrivee, value, false);
+                    RaisePropertyChanged("PaysArrSelec");
                 }
             }
         }
@@ -66,7 +69,7 @@ namespace Projet.VueModel
                 {
                     villeDepSelec = value;
                     Rechercher.RaiseCanExecuteChanged();
-                    RaisePropertyChanged("VilleDepSelec"); // Besoin ici car la liste est mise à jour manuellement
+                    RaisePropertyChanged("VilleDepSelec"); 
                 }
             }
         }
@@ -81,21 +84,20 @@ namespace Projet.VueModel
                 {
                     villeArrSelec = value;
                     Rechercher.RaiseCanExecuteChanged();
-                    RaisePropertyChanged("VilleArrSelec"); // Besoin ici car la liste est mise à jour manuellement
+                    RaisePropertyChanged("VilleArrSelec");
                 }
             }
         }
 
-        private DateTimeOffset? dateDepart;
-        public DateTimeOffset? DateDepart
+        private DateTime dateDepart;
+        public DateTime DateDepart
         {
             get { return dateDepart; }
             set
             {
                 if (value != dateDepart)
                 {
-                    dateDepart = value;
-                    RaisePropertyChanged("DateDepart");
+                    dateDepart = value;                    
                     Rechercher.RaiseCanExecuteChanged();
                 }
             }
@@ -103,29 +105,42 @@ namespace Projet.VueModel
 
         // Propriete
 
-        private ObservableCollection<string> paysDepart = new ObservableCollection<string>();
-        public ObservableCollection<string> PaysDepart
-        {
-            get { return InitPays(paysDepart,true); }
-        }
+
 
         private ObservableCollection<string> paysArrivee = new ObservableCollection<string>();
         public ObservableCollection<string> PaysArrivee
         {
-            get { return InitPays(paysArrivee,false); }
+            get
+            {
+                InitPays(paysArrivee,false);
+                return paysArrivee;
+            }
         }
 
-        public ObservableCollection<string> InitPays(ObservableCollection<string> listePays, Boolean estPaysDepart)
+        private ObservableCollection<string> paysDepart = new ObservableCollection<string>();
+        public ObservableCollection<string> PaysDepart
         {
+            get
+            {
+                InitPays(paysDepart,true);
+                return paysDepart;
+            }
+        }
+
+        public async void InitPays(ObservableCollection<string> listePays,Boolean estPaysDepart)
+        {
+            VilleService service = new VilleService();
+            IEnumerable<String> pays = await service.GetLibellePays();
+
             listePays.Clear();
-            listePays.Add("France");
-            listePays.Add("Belgique");
-            listePays.Add("Allemagne");           
+            foreach (var p in pays)
+            {
+                listePays.Add(p);
+            }
             if (estPaysDepart)
                 PaysDepSelec = listePays.FirstOrDefault(); // Permet d'afficher le premier item de la combobox a la place d'un vide
             else
                 PaysArrSelec = listePays.FirstOrDefault();
-            return listePays;
         }
 
         private ObservableCollection<string> villeDepart = new ObservableCollection<string>();
@@ -155,36 +170,30 @@ namespace Projet.VueModel
             }
         }
 
-        public void InitVilleDepart(string paysDepart)
+        public async void InitVille(ObservableCollection<string> listeVille, string pays,Boolean estVilleDepart)
         {
-            VilleDepart.Clear();
-            if (paysDepart == "France")
+            VilleService service = new VilleService();
+            IEnumerable<String> ville = await service.getLibelleVillePays(pays);
+
+            listeVille.Clear();
+            foreach (var v in ville)
             {
-                VilleDepart.Add("ParisLion");
+                listeVille.Add(v);
             }
+            if (estVilleDepart)
+                VilleDepSelec = listeVille.FirstOrDefault();
             else
-            {
-                VilleDepart.Add("MalonneBXL");
-            }
-            VilleDepSelec = VilleDepart.FirstOrDefault();                   
+                VilleArrSelec = listeVille.FirstOrDefault();               
         }
 
-        public void InitVilleArrivee(string paysArrivee)
+        public void CalendarDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            VilleArrivee.Clear();
-            if (paysArrivee == "France")
-            {
-                VilleArrivee.Add("ParisLion");
-            }
-            else
-            {
-                VilleArrivee.Add("MalonneBXL");
-            }
-            VilleArrSelec = VilleArrivee.FirstOrDefault();
+            var dateString = sender.Date.ToString();
+            DateTime dateTime = DateTime.Parse(dateString).Date;
+            DateDepart = dateTime;
         }
 
         public RelayCommand Rechercher { get; set; }
-
 
         private bool verifierFormulaire()
         {
@@ -199,27 +208,33 @@ namespace Projet.VueModel
             _navigationService.NavigateTo("PageAccueil");
         }
 
+
+
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             // throw new NotImplementedException();
         }
+
+        //private string test;
+        //public string Test
+        //{
+        //    get { return test; }
+        //    set
+        //    {
+        //        if (value != test)
+        //        {
+        //            test = value;
+        //            RaisePropertyChanged("Test");
+        //        }
+        //    }
+        //}
+
+
     }
 
 
 
-    //private string test;
-    //public string Test
-    //{
-    //    get { return test; }
-    //    set
-    //    {
-    //        if (value != test)
-    //        {
-    //            test = value;
-    //            OnPropertyChanged("Test");
-    //        }
-    //    }
-    //}
+
 
     //private async void ShowMessageDialog()
     //{

@@ -24,7 +24,7 @@
                 <ComboBox ItemsSource="{Binding Path=PaysArrivee}" SelectedItem="{Binding Path=PaysArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15" />
                 <ComboBox ItemsSource="{Binding Path=VilleArrivee}" SelectedItem="{Binding Path=VilleArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15"/>
             </StackPanel>
-            <CalendarDatePicker x:Uid="RechercheDateDepart" Header="" Date="{Binding Path=DateDepart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            <CalendarDatePicker x:Uid="RechercheDateDepart" Header="" DateChanged="{x:Bind RechercheFerryVueModel.CalendarDatePicker_DateChanged}" />
             <TimePicker x:Uid="RechercheHeureDepart" Header="" />
             <TimePicker x:Uid="RechercheHeureArrivee" Header="" />           
             

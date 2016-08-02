@@ -1,4 +1,5 @@
-﻿using Projet.VueModel;
+﻿using Microsoft.Practices.ServiceLocation;
+using Projet.VueModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,27 +23,33 @@ namespace Projet.Vue
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class RechercheFerry : Page
-    {
-        //internal static RechercheFerry rechercheFerry;
+    { 
         //private DateTimeOffset? dateDepart = null;
         public RechercheFerry()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();           
             //DataContext = new RechercheFerryVueModel();
         }
 
         //public void DateDepart_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         //{
-        //    //Checking selected date is null  
+        //    //Checking selected date is null 
+        //    DateTimeOffset? dateDepart; 
         //    if (args.NewDate != null)
         //    {
-        //       dateDepart = args.NewDate.Value;
+        //        dateDepart = args.NewDate.Value;
         //    }
-        //} 
+        //}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ((RechercheFerryVueModel)DataContext).OnNavigatedTo(e);
+        }
+
+        public RechercheFerryVueModel RechercheFerryVueModel {
+            get {
+                return ServiceLocator.Current.GetInstance<RechercheFerryVueModel>();
+            }           
         }
     }
 }
