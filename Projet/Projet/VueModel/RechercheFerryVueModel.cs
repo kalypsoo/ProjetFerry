@@ -356,12 +356,12 @@ namespace Projet.VueModel
         }
 
 
-        private void GoToAjouterFerry()
+        public void GoToAjouterFerry()
         {
             _navigationService.NavigateTo("PageAjoutFerry");
         }
 
-        private void GoToConnexion()
+        public void GoToConnexion()
         {
             _navigationService.NavigateTo("PageConnexion");
         }

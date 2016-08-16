@@ -72,8 +72,6 @@ namespace Projet.VueModel
             if (!String.IsNullOrEmpty(messageErreur))
             {               
                 MessageDialog message = new MessageDialog(messageErreur, loader.GetString("AjoutTitreErreurDialog"));
-
-
                 await message.ShowAsync();
             }
             else
