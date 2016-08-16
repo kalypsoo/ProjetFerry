@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Projet</RootNamespace>
     <AssemblyName>Projet</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>fr-FR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
@@ -94,25 +94,35 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\fr-FR\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Models\Ville.cs" />
-    <Compile Include="Model\Models\Compagnie.cs" />
+    <Compile Include="Helpers\BoolToVisConverter.cs" />
+    <Compile Include="Helpers\RegexHelper.cs" />
+    <Compile Include="Model\Models\FerryInfo.cs" />
+    <Compile Include="Model\Models\FerryInfoCodeErreur.cs" />
+    <Compile Include="Model\Models\FerryObjetNavigation.cs" />
+    <Compile Include="Model\Models\IntCodeErreur.cs" />
+    <Compile Include="Model\Models\ListStringCodeErreur.cs" />
+    <Compile Include="Model\Models\Recherche.cs" />
+    <Compile Include="Model\Models\StringCodeErreur.cs" />
     <Compile Include="Model\Models\Ferry.cs" />
-    <Compile Include="Model\Models\Gerant.cs" />
+    <Compile Include="Model\Services\ConnexionService.cs" />
+    <Compile Include="Model\Services\FerryService.cs" />
     <Compile Include="Model\Services\VilleService.cs" />
     <Compile Include="VueModel\AccueilVueModel.cs" />
+    <Compile Include="VueModel\AjoutFerryVM.cs" />
+    <Compile Include="VueModel\ConnexionVM.cs" />
+    <Compile Include="VueModel\InformationFerryVueModel.cs" />
+    <Compile Include="VueModel\RechercheFerryResultatVueModel.cs" />
     <Compile Include="VueModel\RechercheFerryVueModel.cs" />
     <Compile Include="VueModel\VueModelLocator.cs" />
     <Compile Include="Vue\AjoutFerry.xaml.cs">
       <DependentUpon>AjoutFerry.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vue\APropos.xaml.cs">
-      <DependentUpon>APropos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vue\Connexion.xaml.cs">
       <DependentUpon>Connexion.xaml</DependentUpon>
@@ -138,6 +148,8 @@
     <None Include="Projet_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\croisiere.jpg" />
+    <Content Include="Assets\croisiere.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -153,10 +165,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Vue\AjoutFerry.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vue\APropos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

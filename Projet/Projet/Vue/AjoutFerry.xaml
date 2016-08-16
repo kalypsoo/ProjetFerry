@@ -5,9 +5,60 @@
     xmlns:local="using:Projet.Vue"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource Locator}, Path=AjoutFerry}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.TopAppBar>
+        <CommandBar x:Uid="TopBarreAjout" Content="" Background="#FF0097FF" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+            <AppBarButton Icon="Home" Command="{Binding GoToAccueilCommand}" />
+            <AppBarButton Icon="Find" Command="{Binding GoToRechercheFerryCommand}" />
+        </CommandBar>
+    </Page.TopAppBar>
 
-    </Grid>
+    <ScrollViewer>
+        <StackPanel x:Name="ContenuPageAjout" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+            <TextBlock x:Uid="AjoutNomFerry" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox Text="{Binding Path=NomFerry,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="20" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+            <TextBlock x:Uid="AjoutIdentificationFerry" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox Text="{Binding Path=IdentifiantFerry,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="20" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB"/>
+
+            <TextBlock x:Uid="AjoutLieuDepart" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <ComboBox ItemsSource="{Binding Path=PaysDepart}" SelectedItem="{Binding Path=PaysDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB"/>
+            <ComboBox ItemsSource="{Binding Path=VilleDepart}" SelectedItem="{Binding Path=VilleDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB"/>
+
+            <TextBlock x:Uid="AjoutQuaiDepart" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox Text="{Binding Path=QuaiDepart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="3"  Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+            <TextBlock x:Uid="AjoutLieuArrivee" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <ComboBox ItemsSource="{Binding Path=PaysArrivee}" SelectedItem="{Binding Path=PaysArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB" />
+            <ComboBox ItemsSource="{Binding Path=VilleArrivee}" SelectedItem="{Binding Path=VilleArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB" />
+
+            <TextBlock x:Uid="AjoutQuaiArrivee" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox Text="{Binding Path=QuaiArrivee,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="3" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+            <TextBlock x:Uid="AjoutTarifEnfant" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox Text="{Binding Path=TarifEnfant,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="6" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+
+            <TextBlock x:Uid="AjoutTarifAdulte" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox  Text="{Binding Path=TarifAdulte, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="6" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+            <TextBlock x:Uid="AjoutTarifVehicule" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox  Text="{Binding Path=TarifVehicule, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="7" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+            <TextBlock x:Uid="AjoutTarifRemorque" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TextBox  Text="{Binding Path=TarifRemorque, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="7" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+            <TextBlock x:Uid="AjoutDateDepart" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <CalendarDatePicker DateChanged="{x:Bind AjoutFerryVM.CalendarDatePicker_DateChanged}" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+            <TextBlock x:Uid="AjoutHeureDepart" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TimePicker TimeChanged="{x:Bind AjoutFerryVM.TimePickerHeureDepart_TimeChanged}" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+            <TextBlock x:Uid="AjoutHeureArrivee" Text="" FontSize="20" Margin="15,30,0,0"/>
+            <TimePicker TimeChanged="{x:Bind AjoutFerryVM.TimePickerHeureArrivee_TimeChanged}" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+
+            <Button x:Uid="Ajouter" Content="" Command="{Binding Ajouter}" Width="150" Background="#FF0097FF" Margin="50,25,0,0" />
+        </StackPanel>
+    </ScrollViewer>
 </Page>

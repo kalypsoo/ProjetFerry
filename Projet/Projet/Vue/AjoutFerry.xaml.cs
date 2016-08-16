@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using Projet.VueModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +27,14 @@ namespace Projet.Vue
         public AjoutFerry()
         {
             this.InitializeComponent();
+        }
+
+        public AjoutFerryVM AjoutFerryVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AjoutFerryVM>();
+            }
         }
     }
 }

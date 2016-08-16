@@ -28,32 +28,5 @@ namespace Projet
         {
             this.InitializeComponent();
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ((AccueilVueModel)DataContext).OnNavigatedTo(e);
-        }
-
-        //protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        //{
-        //    ((AccueilVueModel)DataContext).OnNavigatedFrom(e);
-        //}
-
-
-
-        //private void GoToRechercheFerry(object sender, RoutedEventArgs e)
-        //{
-        //    Frame.Navigate(typeof(RechercheFerry));
-        //}
-
-        //private void GoToConnexion(object sender, RoutedEventArgs e)
-        //{
-        //    Frame.Navigate(typeof(Connexion));
-        //}
-
-        //private void GoToAPropos(object sender, RoutedEventArgs e)
-        //{
-        //    Frame.Navigate(typeof(APropos));
-        //}
     }
 }

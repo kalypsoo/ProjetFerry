@@ -1,19 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Projet.Model;
+using Projet.Model.Models;
 using Projet.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace Projet.VueModel
 {
@@ -24,10 +21,9 @@ namespace Projet.VueModel
         public RechercheFerryVueModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            Rechercher = new RelayCommand(GoToAccueil, verifierFormulaire);
+            Rechercher = new RelayCommand(AfficherResultat, VerifierFormulaire);
         }
 
-        // Getter & Setter 
         private string paysDepartSelectionne;
         public string PaysDepSelec // Quand le pays change, appelle la methode initVille
         {
@@ -36,8 +32,8 @@ namespace Projet.VueModel
                 if (value != paysDepartSelectionne)
                 {
                     paysDepartSelectionne = value;
-                    Rechercher.RaiseCanExecuteChanged();
-                    InitVille(villeDepart,value,true);
+                    InitVille(villeDepart, value, true);
+                    Rechercher.RaiseCanExecuteChanged();                    
                     RaisePropertyChanged("PaysDepSelec");
                 }        
             }
@@ -52,8 +48,8 @@ namespace Projet.VueModel
                 if (value != paysArriveeSelectionne)
                 {
                     paysArriveeSelectionne = value;
-                    Rechercher.RaiseCanExecuteChanged();
                     InitVille(villeArrivee, value, false);
+                    Rechercher.RaiseCanExecuteChanged();
                     RaisePropertyChanged("PaysArrSelec");
                 }
             }
@@ -103,10 +99,6 @@ namespace Projet.VueModel
             }
         }
 
-        // Propriete
-
-
-
         private ObservableCollection<string> paysArrivee = new ObservableCollection<string>();
         public ObservableCollection<string> PaysArrivee
         {
@@ -127,20 +119,30 @@ namespace Projet.VueModel
             }
         }
 
-        public async void InitPays(ObservableCollection<string> listePays,Boolean estPaysDepart)
+        public async void InitPays(ObservableCollection<string> listePays, Boolean estPaysDepart)
         {
             VilleService service = new VilleService();
-            IEnumerable<String> pays = await service.GetLibellePays();
-
-            listePays.Clear();
-            foreach (var p in pays)
+            ListStringCodeErreur reponse = new ListStringCodeErreur();
+            reponse = await service.GetLibellePays();
+            if (reponse.codeErreur == 0)
             {
-                listePays.Add(p);
+                IEnumerable<String> pays = reponse.listeTexte;
+                listePays.Clear();
+                foreach (var p in pays)
+                {
+                    listePays.Add(p);
+                }
+                if (estPaysDepart)
+                    PaysDepSelec = listePays.FirstOrDefault(); // Permet d'afficher le premier item de la combobox a la place d'un vide
+                else
+                    PaysArrSelec = listePays.FirstOrDefault();
             }
-            if (estPaysDepart)
-                PaysDepSelec = listePays.FirstOrDefault(); // Permet d'afficher le premier item de la combobox a la place d'un vide
             else
-                PaysArrSelec = listePays.FirstOrDefault();
+            {
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                MessageDialog message = new MessageDialog(loader.GetString("ErreurInternetDialog"), loader.GetString("ErreurInternetTitreDialog"));
+                await message.ShowAsync();
+            }
         }
 
         private ObservableCollection<string> villeDepart = new ObservableCollection<string>();
@@ -151,7 +153,6 @@ namespace Projet.VueModel
                 if (villeDepart != value)
                 {
                     villeDepart = value;
-                    Rechercher.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -165,25 +166,35 @@ namespace Projet.VueModel
                 if (villeArrivee != value)
                 {
                     villeArrivee = value;
-                    Rechercher.RaiseCanExecuteChanged();
                 }
             }
         }
 
-        public async void InitVille(ObservableCollection<string> listeVille, string pays,Boolean estVilleDepart)
+        public async void InitVille(ObservableCollection<string> listeVille, string pays, Boolean estVilleDepart)
         {
             VilleService service = new VilleService();
-            IEnumerable<String> ville = await service.getLibelleVillePays(pays);
-
-            listeVille.Clear();
-            foreach (var v in ville)
+            ListStringCodeErreur reponse = new ListStringCodeErreur();
+            reponse = await service.getLibelleVillePays(pays);
+            if (reponse.codeErreur == 0)
             {
-                listeVille.Add(v);
+                IEnumerable<String> ville = reponse.listeTexte;
+
+                listeVille.Clear();
+                foreach (var v in ville)
+                {
+                    listeVille.Add(v);
+                }
+                if (estVilleDepart)
+                    VilleDepSelec = listeVille.FirstOrDefault();
+                else
+                    VilleArrSelec = listeVille.FirstOrDefault();
             }
-            if (estVilleDepart)
-                VilleDepSelec = listeVille.FirstOrDefault();
             else
-                VilleArrSelec = listeVille.FirstOrDefault();               
+            {
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                MessageDialog message = new MessageDialog(loader.GetString("ErreurInternetDialog"), loader.GetString("ErreurInternetTitreDialog"));
+                await message.ShowAsync();
+            }
         }
 
         public void CalendarDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
@@ -195,62 +206,169 @@ namespace Projet.VueModel
 
         public RelayCommand Rechercher { get; set; }
 
-        private bool verifierFormulaire()
+        private bool VerifierFormulaire()
         {
-            if (!String.IsNullOrEmpty(PaysDepSelec))
-                return true;
+            bool erreur = true;
+            if (PaysDepSelec == PaysArrSelec && VilleDepSelec == VilleArrSelec)
+                erreur = false;
+            if (DateTime.Compare(DateDepart, DateTime.Today) < 0)
+                erreur = false;
+
+            return erreur;
+        }
+
+        public async void AfficherResultat()
+        {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            FerryObjetNavigation objetNavigationFerry;
+            Recherche recherche = new Recherche();
+            VilleService service = new VilleService();
+            IntCodeErreur reponseIdVilleDep = await service.getIdVille(PaysDepSelec, VilleDepSelec);
+            if (reponseIdVilleDep.codeErreur == 0)
+            {
+                recherche.numVilleDepart = reponseIdVilleDep.entier;
+                IntCodeErreur reponseIdVilleArr = await service.getIdVille(PaysArrSelec, villeArrSelec);
+                if (reponseIdVilleArr.codeErreur == 0)
+                {
+                    recherche.numVilleArrivee = reponseIdVilleArr.entier;
+                    recherche.dateDepart = DateDepart.Date.ToString("yyyy-MM-dd"); // Conversion car le format date sql et c# sont differents
+                    FerryInfoCodeErreur reponse = await service.getResultatRecherche(recherche);
+                    if (reponse.codeErreur == 0)
+                    {
+                        if (reponse.listeFerry.Count() == 0)
+                        {
+                            MessageDialog message = new MessageDialog(loader.GetString("RechercheAucunFerryDialog"), loader.GetString("RechercheAucunFerryTitreDialog"));
+                            await message.ShowAsync();
+                        }
+                        else
+                        {
+                            objetNavigationFerry = new FerryObjetNavigation();
+                            objetNavigationFerry.listeFerry = reponse.listeFerry;
+                            objetNavigationFerry.villeDepart = VilleDepSelec;
+                            objetNavigationFerry.villeArrivee = VilleArrSelec;
+                            objetNavigationFerry.paysDepart = PaysDepSelec;
+                            objetNavigationFerry.paysArrivee = PaysArrSelec;
+                            _navigationService.NavigateTo("PageRechercheFerryResultat", objetNavigationFerry);
+                        }
+                    }
+                    else
+                    {
+                        MessageDialog message = new MessageDialog(loader.GetString("ErreurInternetDialog"), loader.GetString("ErreurInternetTitreDialog"));
+                        await message.ShowAsync();
+                    }
+                }
+                else
+                {
+                    MessageDialog message = new MessageDialog(loader.GetString("ErreurInternetDialog"), loader.GetString("ErreurInternetTitreDialog"));
+                    await message.ShowAsync();
+                }
+            }
             else
-                return false;
+            {
+                MessageDialog message = new MessageDialog(loader.GetString("ErreurInternetDialog"), loader.GetString("ErreurInternetTitreDialog"));
+                await message.ShowAsync();
+            }
+        }
+
+        // Renvoie l'heure au format hh:mm 
+        public string getHeureHHMM(TimeSpan heure)
+        {
+            string heureConvertie = "";
+            if (heure.Hours.ToString().Length == 1)
+                heureConvertie += "0" + heure.Hours + ":";
+            else
+                heureConvertie += heure.Hours + ":";
+
+            if (heure.Minutes.ToString().Length == 1)
+                heureConvertie += "0" + heure.Minutes;
+            else
+                heureConvertie += heure.Minutes;
+
+            return heureConvertie;
+        }
+
+        private bool estConnecte;
+        public bool EstConnecte
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(ConnexionVM.TvaGerant))
+                {
+                    estConnecte = true;
+                }
+                else
+                {
+                    estConnecte = false;
+                }
+
+                return estConnecte;
+            }
+        }
+
+        private bool estDeconnecte;
+        public bool EstDeconnecte
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(ConnexionVM.TvaGerant))
+                {
+                    estDeconnecte = false;
+                }
+                else
+                {
+                    estDeconnecte = true;
+                }
+                return estDeconnecte;
+            }
+        }
+
+        private ICommand _goToAccueil;
+        public ICommand GoToAccueilCommand
+        {
+            get
+            {
+                if (_goToAccueil == null)
+                    _goToAccueil = new RelayCommand(() => GoToAccueil());
+                return _goToAccueil;
+            }
+        }
+
+        private ICommand _goToAjouterFerry;
+        public ICommand GoToAjouterFerryCommand
+        {
+            get
+            {
+                if (_goToAjouterFerry == null)
+                    _goToAjouterFerry = new RelayCommand(() => GoToAjouterFerry());
+                return _goToAjouterFerry;
+            }
+        }
+
+        private ICommand _goToConnexion;
+        public ICommand GoToConnexionCommand
+        {
+            get
+            {
+                if (_goToConnexion == null)
+                    _goToConnexion = new RelayCommand(() => GoToConnexion());
+                return _goToConnexion;
+            }
+        }
+
+
+        private void GoToAjouterFerry()
+        {
+            _navigationService.NavigateTo("PageAjoutFerry");
+        }
+
+        private void GoToConnexion()
+        {
+            _navigationService.NavigateTo("PageConnexion");
         }
 
         public void GoToAccueil()
         {
             _navigationService.NavigateTo("PageAccueil");
         }
-
-
-
-        public void OnNavigatedTo(NavigationEventArgs e)
-        {
-            // throw new NotImplementedException();
-        }
-
-        //private string test;
-        //public string Test
-        //{
-        //    get { return test; }
-        //    set
-        //    {
-        //        if (value != test)
-        //        {
-        //            test = value;
-        //            RaisePropertyChanged("Test");
-        //        }
-        //    }
-        //}
-
-
     }
-
-
-
-
-
-    //private async void ShowMessageDialog()
-    //{
-    //    MessageDialog msgbox = new MessageDialog("coucou");
-    //    await msgbox.ShowAsync();
-    //}
-
-    //private ICommand _validerRecherche;
-    //public ICommand ValiderRecherche
-    //{
-    //    get
-    //    {
-    //        if (_validerRecherche == null)
-    //            _validerRecherche = new RelayCommand(GoToAccueil, canExecute); // Ca fonctionne le probleme avec canExecute c'est que ca doit rafraichir la page sinon prend pas en compte les changements (canExecute set a false ==> bouton desactiver)
-
-    //        return _validerRecherche;
-    //    }
-    //}
 }

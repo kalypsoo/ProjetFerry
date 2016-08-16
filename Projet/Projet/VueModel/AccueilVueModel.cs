@@ -1,17 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Projet.Vue;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 namespace Projet.VueModel
 {
@@ -22,7 +15,31 @@ namespace Projet.VueModel
         public AccueilVueModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
+            // ApplicationLanguages.PrimaryLanguageOverride = "en-US"; // Test pour changer la langue (besoin de refresh la page pour que sa soit pris en compte)
         }
+
+        private ICommand _goToAjouterFerry;
+        public ICommand GoToAjouterFerryCommand
+        {
+            get
+            {
+                if (_goToAjouterFerry == null)
+                    _goToAjouterFerry = new RelayCommand(() => GoToAjouterFerry());
+                return _goToAjouterFerry;
+            }
+        }
+
+        private ICommand _goToConnexion;
+        public ICommand GoToConnexionCommand
+        {
+            get
+            {
+                if (_goToConnexion == null)
+                    _goToConnexion = new RelayCommand(() => GoToConnexion());
+                return _goToConnexion;
+            }
+        }
+
         private ICommand _goToRechercheFerry;
         public ICommand GoToRechercheFerryCommand
         {
@@ -34,9 +51,37 @@ namespace Projet.VueModel
             }
         }
 
-        public void OnNavigatedTo(NavigationEventArgs e)
+        private ICommand deconnexion;
+        public ICommand Deconnexion
         {
-            //throw new NotImplementedException(); // Par exemple recuperer un objet
+            get
+            {
+                if (deconnexion == null)
+                {
+                    deconnexion = new RelayCommand(() => ResterAccueil());
+                }
+                return deconnexion;
+            }
+        }
+
+        public void ResterAccueil()
+        {
+            ConfirmationDeconnexion();
+        }
+        public async void ConfirmationDeconnexion()
+        {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            MessageDialog message = new MessageDialog(loader.GetString("DeconnexionValidationDialog"), loader.GetString("DeconnexionTitreDialog"));
+            message.Commands.Add(new UICommand { Label = loader.GetString("OuiDialog"), Id = 0 });
+            message.Commands.Add(new UICommand { Label = loader.GetString("NonDialog"), Id = 1 });
+
+            var res = await message.ShowAsync();
+            
+            if ((int)res.Id == 0)
+            {
+                ConnexionVM.TvaGerant = "";
+                RafraichirAccueil();
+            }
         }
 
         private void GoToRechercheFerry()
@@ -44,10 +89,54 @@ namespace Projet.VueModel
             _navigationService.NavigateTo("PageRechercheFerry");
         }
 
-        //internal void OnNavigatedFrom(NavigatingCancelEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private void GoToAjouterFerry()
+        {
+            _navigationService.NavigateTo("PageAjoutFerry");
+        }
 
+        private void GoToConnexion()
+        {
+            _navigationService.NavigateTo("PageConnexion");
+        }
+
+        private void RafraichirAccueil()
+        {
+            _navigationService.NavigateTo("PageAccueil");
+        }
+
+        private bool estConnecte;
+        public bool EstConnecte
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(ConnexionVM.TvaGerant))
+                {
+                    estConnecte = true;
+                }
+                else
+                {
+                    estConnecte = false;
+                }
+
+                return estConnecte;
+            }
+        }
+
+        private bool estDeconnecte;
+        public bool EstDeconnecte
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(ConnexionVM.TvaGerant))
+                {
+                    estDeconnecte = false;
+                }
+                else
+                {
+                    estDeconnecte = true;
+                }
+                return estDeconnecte;
+            }
+        }
     }
 }

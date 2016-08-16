@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using Projet.VueModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +27,11 @@ namespace Projet.Vue
         public RechercheFerryResultat()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ((RechercheFerryResultatVueModel)DataContext).OnNavigatedTo(e);
         }
     }
 }

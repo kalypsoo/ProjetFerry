@@ -118,243 +118,240 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AjoutDateDepart.Text" xml:space="preserve">
-    <value>Date de départ</value>
+    <value>Date of departure</value>
   </data>
   <data name="Ajouter.Content" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>Add</value>
   </data>
   <data name="AjoutHeureArrivee.Text" xml:space="preserve">
-    <value>Heure d'arrivée</value>
+    <value>Arriving time</value>
   </data>
   <data name="AjoutHeureDepart.Text" xml:space="preserve">
-    <value>Heure de départ</value>
+    <value>Departure time</value>
   </data>
   <data name="AjoutIdentificationFerry.Text" xml:space="preserve">
     <value>N° identification</value>
   </data>
   <data name="AjoutLieuArrivee.Text" xml:space="preserve">
-    <value>Lieu d'arrivée</value>
+    <value>Arrival point</value>
   </data>
   <data name="AjoutLieuDepart.Text" xml:space="preserve">
-    <value>Lieu de départ</value>
+    <value>Place of departure</value>
   </data>
   <data name="AjoutNomFerry.Text" xml:space="preserve">
-    <value>Nom du ferry</value>
+    <value>Ferry name</value>
   </data>
   <data name="AjoutQuaiArrivee.Text" xml:space="preserve">
-    <value>N° du quai d'arrivée</value>
+    <value>No. of arrival platform</value>
   </data>
   <data name="AjoutQuaiDepart.Text" xml:space="preserve">
-    <value>N° du quai de départ</value>
+    <value>No departure dock</value>
   </data>
   <data name="AjoutTarifAdulte.Text" xml:space="preserve">
-    <value>Tarif adulte</value>
+    <value>Adult price</value>
   </data>
   <data name="AjoutTarifEnfant.Text" xml:space="preserve">
-    <value>Tarif enfant</value>
+    <value>Children price</value>
   </data>
   <data name="AjoutTarifRemorque.Text" xml:space="preserve">
-    <value>Tarif remorque</value>
+    <value>Trailer price</value>
   </data>
   <data name="AjoutTarifVehicule.Text" xml:space="preserve">
-    <value>Tarif véhicule</value>
+    <value>Vehicle price</value>
   </data>
   <data name="AucunResultat.Text" xml:space="preserve">
-    <value>Aucun résultat ne correspond à votre recherche</value>
+    <value>No result found for your search</value>
   </data>
   <data name="BoutonAPropos.Content" xml:space="preserve">
-    <value>A propos</value>
+    <value>About</value>
   </data>
   <data name="BoutonConnexion.Content" xml:space="preserve">
-    <value>Connexion</value>
+    <value>Connection</value>
   </data>
   <data name="BoutonRecherche.Content" xml:space="preserve">
-    <value>Recherche</value>
+    <value>Search</value>
   </data>
   <data name="ConnexionIdentifiant.Text" xml:space="preserve">
-    <value>Nom de compte</value>
+    <value>User account</value>
   </data>
   <data name="ConnexionPassword.Text" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>Password</value>
   </data>
   <data name="ConnexionRetour.Content" xml:space="preserve">
-    <value>Retour</value>
+    <value>Return</value>
   </data>
   <data name="ConnexionValidation.Content" xml:space="preserve">
-    <value>Connexion</value>
+    <value>Connection</value>
   </data>
   <data name="InfoFerryLieuArrivee.Text" xml:space="preserve">
-    <value>Lieu de débarquement</value>
+    <value>Landing place</value>
   </data>
   <data name="InfoFerryLieuDepart.Text" xml:space="preserve">
-    <value>Lieu d'embarcation</value>
+    <value>Place Boat</value>
   </data>
   <data name="InfoFerryNomCompagnie.Text" xml:space="preserve">
-    <value>Nom de la compagnie</value>
+    <value>Company Name</value>
   </data>
   <data name="InfoFerryNomFerry.Text" xml:space="preserve">
-    <value>Nom du ferry</value>
+    <value>ferry name</value>
   </data>
   <data name="InfoFerryPort.Text" xml:space="preserve">
-    <value>Port de</value>
+    <value>Harbour of</value>
   </data>
   <data name="InfoFerryPrixAdulte.Text" xml:space="preserve">
-    <value>Prix adulte</value>
+    <value>Adulte price</value>
   </data>
   <data name="InfoFerryPrixEnfant.Text" xml:space="preserve">
-    <value>Prix enfant</value>
+    <value>Children price</value>
   </data>
   <data name="InfoFerryPrixRemorque.Text" xml:space="preserve">
-    <value>Prix remorque</value>
+    <value>Trailer price</value>
   </data>
   <data name="InfoFerryPrixVehicule.Text" xml:space="preserve">
-    <value>Prix voiture</value>
+    <value>Vehicle price</value>
   </data>
   <data name="InfoFerryQuai.Text" xml:space="preserve">
-    <value>quai n°</value>
+    <value>Pier n°</value>
   </data>
   <data name="RechercheDateDepart.Text" xml:space="preserve">
-    <value>Date de départ</value>
+    <value>Date of departure</value>
   </data>
   <data name="RechercheDateDepartTexte.Text" xml:space="preserve">
-    <value>Date de départ</value>
+    <value>Date of departure</value>
   </data>
   <data name="RechercheLieuArrivee.Text" xml:space="preserve">
-    <value>Lieu d'arrivée</value>
+    <value>Arrival point</value>
   </data>
   <data name="RechercheLieuDepart.Text" xml:space="preserve">
-    <value>Lieu de départ</value>
+    <value>Place of departure</value>
   </data>
   <data name="RechercheValider.Content" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>Search</value>
   </data>
   <data name="Resultats.Text" xml:space="preserve">
-    <value>Resultats de la recherche</value>
-  </data>
-  <data name="RetourAccueil.Content" xml:space="preserve">
-    <value>Retour</value>
+    <value>Search results</value>
   </data>
   <data name="TexteLieuArriveeResultat.Text" xml:space="preserve">
-    <value>A</value>
+    <value>From</value>
   </data>
   <data name="TexteLieuDepart.Text" xml:space="preserve">
-    <value>De</value>
+    <value>To</value>
   </data>
   <data name="TexteLieuDepartResultat.Text" xml:space="preserve">
-    <value>De</value>
+    <value>To</value>
   </data>
   <data name="TopBarreAccueil.Content" xml:space="preserve">
-    <value>Accueil</value>
+    <value>Home</value>
   </data>
   <data name="TopBarreInformationFerry.Content" xml:space="preserve">
-    <value>Information ferry</value>
+    <value>Ferry information</value>
   </data>
   <data name="TopBarreRecherche.Content" xml:space="preserve">
-    <value>Recherche ferry</value>
+    <value>Ferry search</value>
   </data>
   <data name="TopBarreRechercheResultat.Content" xml:space="preserve">
-    <value>Resultat recherche</value>
+    <value>search result</value>
   </data>
   <data name="BoutonDeconnexion.Content" xml:space="preserve">
-    <value>Deconnexion</value>
+    <value>logout</value>
   </data>
   <data name="AjoutIdenfiantErreurDialog" xml:space="preserve">
-    <value>L'identifiant du ferry ne peut pas être vide et ne doit contenir que des lettres, chiffres et espaces</value>
+    <value>The identifier of the ferry can not be empty and must contain only letters, numbers and spaces</value>
   </data>
   <data name="AjoutNomFerryErreurDialog" xml:space="preserve">
-    <value>Le nom du ferry ne peut pas être vide et ne doit contenir que des lettres, chiffres et espaces</value>
+    <value>The name of the ferry can not be empty and must contain only letters, numbers and spaces</value>
   </data>
   <data name="AjoutPrixAdulteErreurDialog" xml:space="preserve">
-    <value>Le prix adulte ne peut pas être vide et doit être au format 999.99</value>
+    <value>The adult price can not be empty and must be in the format 999.99 </value>
   </data>
   <data name="AjoutPrixEnfantErreurDialog" xml:space="preserve">
-    <value>Le prix enfant ne peut pas être vide et doit être au format 999.99</value>
+    <value>The price child can not be empty and must be in the format 999.99</value>
   </data>
   <data name="AjoutPrixRemorqueErreurDialog" xml:space="preserve">
-    <value>Le prix remorque ne peut pas être vide et doit être au format 9999.99</value>
+    <value>The trailer price can not be empty and must be in the format  9999.99</value>
   </data>
   <data name="AjoutPrixVehiculeErreurDialog" xml:space="preserve">
-    <value>Le prix vehicule ne peut pas être vide et doit être au format 9999.99</value>
+    <value>The vehicle price can not be empty and must be int the format 9999.99</value>
   </data>
   <data name="NonDialog" xml:space="preserve">
-    <value>Non</value>
+    <value>No</value>
   </data>
   <data name="OuiDialog" xml:space="preserve">
-    <value>Oui</value>
+    <value>Yes</value>
   </data>
   <data name="DeconnexionTitreDialog" xml:space="preserve">
-    <value>Confirmation déconnexion</value>
+    <value>logout confirmation</value>
   </data>
   <data name="DeconnexionValidationDialog" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir vous déconnecter?</value>
+    <value>Are you sure you want to disconnect?</value>
   </data>
   <data name="AjoutConfirmationDialog" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir ajouter ce ferry?</value>
+    <value>Are you sure you want to add this ferry?</value>
   </data>
   <data name="AjoutConfirmationTitreDialog" xml:space="preserve">
-    <value>Confirmation ajout ferry</value>
+    <value>Ferry added confirmation</value>
   </data>
   <data name="AjoutDateDepartErreurDialog" xml:space="preserve">
-    <value>La date de départ ne peut pas être inférieur à celle du jour</value>
+    <value>The departure date can not be lower than the day</value>
   </data>
   <data name="AjoutDepartArriveeIdemErreurDialog" xml:space="preserve">
-    <value>Le lieu de depart et d'arrivée ne peuvent pas être identique</value>
+    <value>The place of departure and arrival can not be the same</value>
   </data>
   <data name="AjoutHeuresErreurDialog" xml:space="preserve">
-    <value>L'heure de départ doit préceder celle d'arrivée</value>
+    <value>The start time must precede the arrival</value>
   </data>
   <data name="AjoutNumQuaiArriveeErreurDialog" xml:space="preserve">
-    <value>Le numéro du quai d'arrivée ne peut pas être vide et doit être au format 999</value>
+    <value>The number of the receiving dock can not be empty and must be in the format 999</value>
   </data>
   <data name="AjoutNumQuaiDepartErreurDialog" xml:space="preserve">
-    <value>Le numéro du quai de départ ne peut pas être vide et doit être au format 999</value>
+    <value>The starting platform number can not be empty and must be in the format 999</value>
   </data>
   <data name="AjoutTitreErreurDialog" xml:space="preserve">
-    <value>Formulaire incorrecte</value>
+    <value>Incorrect form</value>
   </data>
   <data name="BoutonAjouter.Content" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>Add</value>
   </data>
   <data name="AjoutFerryExistantDialog" xml:space="preserve">
-    <value>Ce ferry existe déjà</value>
+    <value>This ferry already exist</value>
   </data>
   <data name="AjoutFerryExistantTitreDialog" xml:space="preserve">
-    <value>Ferry existant</value>
+    <value>Existing ferry</value>
   </data>
   <data name="AjoutResterDialog" xml:space="preserve">
-    <value>Rester</value>
+    <value>Stay</value>
   </data>
   <data name="AjoutRetourAccueilDialog" xml:space="preserve">
-    <value>Accueil</value>
+    <value>Home</value>
   </data>
   <data name="AjoutSuccesDialog" xml:space="preserve">
-    <value>Le ferry a été ajouté avec succès ! Souhaitez-vous rester sur la page  ou retourner à l'accueil ?</value>
+    <value>The ferry was added successfully! Would you like to stay on the page or return to home?</value>
   </data>
   <data name="AjoutSuccesTitreDialog" xml:space="preserve">
-    <value>Ferry ajouté</value>
+    <value>Ferry added</value>
   </data>
   <data name="ConnexionIDErreurDialog" xml:space="preserve">
-    <value>Nom d'utilisateur et/ou mot de passe incorrecte</value>
+    <value>Incorrect username and / or password</value>
   </data>
   <data name="ConnexionIDErreurTitreDialog" xml:space="preserve">
-    <value>Identifiant incorrect</value>
+    <value>incorrect identifier</value>
   </data>
   <data name="ErreurInternetDialog" xml:space="preserve">
-    <value>Un problème est survenu lors de la connexion à la BD, verifiez votre connexion internet</value>
+    <value>A problem occurred when connecting to the database, check your internet connection</value>
   </data>
   <data name="ErreurInternetTitreDialog" xml:space="preserve">
-    <value>Erreur connexion</value>
+    <value>connection error</value>
   </data>
   <data name="RechercheAucunFerryDialog" xml:space="preserve">
-    <value>Aucun ferry ne correspond à votre recherche</value>
+    <value>No ferry matches your search</value>
   </data>
   <data name="RechercheAucunFerryTitreDialog" xml:space="preserve">
-    <value>Pas de résultat</value>
+    <value>No result</value>
   </data>
   <data name="ResultatInformation.Text" xml:space="preserve">
     <value>       Informations</value>
   </data>
   <data name="TopBarreConnexion.Content" xml:space="preserve">
-    <value>Connexion</value>
+    <value>Connection</value>
   </data>
 </root>

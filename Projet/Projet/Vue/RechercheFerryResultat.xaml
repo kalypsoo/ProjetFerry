@@ -5,9 +5,40 @@
     xmlns:local="using:Projet.Vue"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource Locator}, Path=RechercheFerryResultat}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.TopAppBar>
+        <CommandBar x:Uid="TopBarreRechercheResultat" Content="" FontSize="26"  VerticalContentAlignment="Center" Background="#FF0097FF" >
+            <AppBarButton Icon="Home" Command="{Binding GoToAccueilCommand}" />
+            <AppBarButton Icon="Add" Command="{Binding GoToAjouterFerryCommand}" Visibility="{Binding Path=EstDeconnecte, Converter={StaticResource BoolToVisConverter}}" />
+            <AppBarButton Icon="People" Command="{Binding GoToConnexionCommand}" Visibility="{Binding Path=EstConnecte, Converter={StaticResource BoolToVisConverter}}" />
+        </CommandBar>
+    </Page.TopAppBar>
+    <ScrollViewer>
+        <StackPanel x:Name="ContenuPageRechercheResultat" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <TextBlock x:Uid="TexteLieuDepartResultat" Text="" FontSize="20" Margin="15,30,0,0"/>
+                <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+                    <TextBlock Text="{Binding Path=VilleDepart}" HorizontalAlignment="Center" FontSize="15"/>
+                </Border>
+                <TextBlock x:Uid="TexteLieuArriveeResultat" Text="" FontSize="20" Margin="15,20,0,0"/>
+            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+                <TextBlock Text="{Binding Path=VilleArrivee}" HorizontalAlignment="Center" FontSize="15"/>
+            </Border>
+            <TextBlock x:Uid="Resultats" Text="" FontSize="20" Margin="15,20,0,0"/>
+            <ListView ItemsSource="{Binding Path=ResultatFerry}" SelectedItem="{Binding Path=FerrySelectionne,Mode=TwoWay}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB" Height="50">
+                            <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Run Text="{Binding Path=heureDepart}" />
+                                <Run x:Uid="ResultatInformation" Text="" />
+                            </TextBlock>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </ScrollViewer>
 
-    </Grid>
 </Page>

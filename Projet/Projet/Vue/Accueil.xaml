@@ -9,12 +9,19 @@
     mc:Ignorable="d">
 
     <Page.TopAppBar>
-        <CommandBar x:Uid="TopBarreAccueil" Content="" Background="#FF0097FF" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,150"/>
+        <CommandBar x:Uid="TopBarreAccueil" Content="" FontSize="26" VerticalContentAlignment="Center" Background="#FF0097FF" >
+            <AppBarButton Icon="Add" Command="{Binding GoToAjouterFerryCommand}" />
+            <AppBarButton Icon="Find" Command="{Binding GoToRechercheFerryCommand}" />
+            <AppBarButton Icon="People" Command="{Binding GoToConnexionCommand}" Visibility="{Binding Path=EstConnecte, Converter={StaticResource BoolToVisConverter}}" />
+        </CommandBar>
     </Page.TopAppBar>
-
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Uid="BoutonRecherche" Content=""  HorizontalAlignment="Center" Margin="136,150,136,100" Width="150" Background="#FF0097FF" Command="{Binding GoToRechercheFerryCommand}" />
-        <Button x:Uid="BoutonConnexion" Content="" HorizontalAlignment="Center" Margin="136,0,136,10" Width="150" Background="#FF0097FF" />
-        <Button x:Uid="boutonAPropos" Content="" HorizontalAlignment="Center" Margin="136,10,136,10" Width="150" Background="#FF0097FF" />
-    </StackPanel>
+    <ScrollViewer>
+        <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+            <Image Source="/Assets/croisiere.png"/>
+            <Button x:Uid="BoutonRecherche" Content=""  HorizontalAlignment="Center" Margin="136,150,136,100" Width="150" Background="#FF0097FF" Command="{Binding GoToRechercheFerryCommand}" />
+            <Button x:Uid="BoutonConnexion" Content="" HorizontalAlignment="Center" Margin="136,0,136,10" Width="150" Background="#FF0097FF" Command="{Binding GoToConnexionCommand}" Visibility="{Binding Path=EstConnecte, Converter={StaticResource BoolToVisConverter}}" />
+            <Button x:Uid="BoutonAjouter" Content="" HorizontalAlignment="Center" Margin="136,0,136,10" Width="150" Background="#FF0097FF" Command="{Binding GoToAjouterFerryCommand}" Visibility="{Binding Path=EstDeconnecte, Converter={StaticResource BoolToVisConverter}}" />
+            <Button x:Uid="BoutonDeconnexion" Content="" HorizontalAlignment="Center" Margin="136,0,136,10" Width="150" Background="#FF0097FF" Command="{Binding Deconnexion}" Visibility="{Binding Path=EstDeconnecte, Converter={StaticResource BoolToVisConverter}}" />
+        </StackPanel>
+    </ScrollViewer>
 </Page>

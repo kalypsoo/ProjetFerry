@@ -9,26 +9,30 @@
     mc:Ignorable="d">
 
     <Page.TopAppBar>
-        <CommandBar x:Uid="TopBarreRecherche" Content="" Background="#FF0097FF" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,150"/>
+        <CommandBar x:Uid="TopBarreRecherche" Content="" FontSize="26"  VerticalContentAlignment="Center" Background="#FF0097FF" >
+            <AppBarButton Icon="Home" Command="{Binding GoToAccueilCommand}" />
+            <AppBarButton Icon="Add" Command="{Binding GoToAjouterFerryCommand}" Visibility="{Binding Path=EstDeconnecte, Converter={StaticResource BoolToVisConverter}}" />
+            <AppBarButton Icon="People" Command="{Binding GoToConnexionCommand}" Visibility="{Binding Path=EstConnecte, Converter={StaticResource BoolToVisConverter}}" />
+        </CommandBar>
     </Page.TopAppBar>
 
+    
     <ScrollViewer>
         <StackPanel x:Name="ContenuPageRecherche" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <StackPanel x:Name="ContenuRechercheLieuDepart" Margin="70">
-                <TextBlock x:Uid="RechercheLieuDepart" Text="" Margin="15"/>
-                <ComboBox ItemsSource="{Binding Path=PaysDepart}" SelectedItem="{Binding Path=PaysDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15" />
-                <ComboBox ItemsSource="{Binding Path=VilleDepart}" SelectedItem="{Binding Path=VilleDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15"/>
-            </StackPanel>
-            <StackPanel x:Name="ContenuRechercheLieuArrivee" Margin="70">
-                <TextBlock x:Uid="RechercheLieuArrivee" Text="" Margin="15"/>
-                <ComboBox ItemsSource="{Binding Path=PaysArrivee}" SelectedItem="{Binding Path=PaysArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15" />
-                <ComboBox ItemsSource="{Binding Path=VilleArrivee}" SelectedItem="{Binding Path=VilleArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15"/>
-            </StackPanel>
-            <CalendarDatePicker x:Uid="RechercheDateDepart" Header="" DateChanged="{x:Bind RechercheFerryVueModel.CalendarDatePicker_DateChanged}" />
-            <TimePicker x:Uid="RechercheHeureDepart" Header="" />
-            <TimePicker x:Uid="RechercheHeureArrivee" Header="" />           
             
-            <Button x:Uid="RechercheValider" Content="" Command="{Binding Rechercher}" />
+            <TextBlock x:Uid="RechercheLieuDepart" Text="" FontSize="20" Margin="15,30,0,0" />
+            <ComboBox ItemsSource="{Binding Path=PaysDepart}" SelectedItem="{Binding Path=PaysDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB"/>
+            <ComboBox ItemsSource="{Binding Path=VilleDepart}" SelectedItem="{Binding Path=VilleDepSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB"/>
+
+            <TextBlock x:Uid="RechercheLieuArrivee" Text="" FontSize="20" Margin="15,30,0,0" />
+            <ComboBox ItemsSource="{Binding Path=PaysArrivee}" SelectedItem="{Binding Path=PaysArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB"/>
+            <ComboBox ItemsSource="{Binding Path=VilleArrivee}" SelectedItem="{Binding Path=VilleArrSelec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Margin="15,5,0,0" Width="250" Background="#FFAFD8FB"/>
+
+            <TextBlock x:Uid="RechercheDateDepart" Text="" FontSize="20" Margin="15,30,0,0" />
+            <CalendarDatePicker DateChanged="{x:Bind RechercheFerryVueModel.CalendarDatePicker_DateChanged}" Margin="15,5,0,0" Width="250" Background="#FFAFD8FB"/>
+
+            <Button x:Uid="RechercheValider" Content="" Command="{Binding Rechercher}" Width="150" Background="#FF0097FF" Margin="50,25,0,0" />
+
         </StackPanel>
     </ScrollViewer>
     

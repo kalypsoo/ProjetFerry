@@ -24,26 +24,9 @@ namespace Projet.Vue
     /// </summary>
     public sealed partial class RechercheFerry : Page
     { 
-        //private DateTimeOffset? dateDepart = null;
         public RechercheFerry()
         {
             this.InitializeComponent();           
-            //DataContext = new RechercheFerryVueModel();
-        }
-
-        //public void DateDepart_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
-        //{
-        //    //Checking selected date is null 
-        //    DateTimeOffset? dateDepart; 
-        //    if (args.NewDate != null)
-        //    {
-        //        dateDepart = args.NewDate.Value;
-        //    }
-        //}
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ((RechercheFerryVueModel)DataContext).OnNavigatedTo(e);
         }
 
         public RechercheFerryVueModel RechercheFerryVueModel {

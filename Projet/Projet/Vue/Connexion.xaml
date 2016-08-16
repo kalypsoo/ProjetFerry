@@ -5,9 +5,22 @@
     xmlns:local="using:Projet.Vue"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Connexion}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <Page.TopAppBar>
+        <CommandBar x:Uid="TopBarreConnexion" Content="" Background="#FF0097FF" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+            <AppBarButton Icon="Home" Command="{Binding GoToAccueilCommand}" />
+            <AppBarButton Icon="Find" Command="{Binding GoToRechercheFerryCommand}" />
+        </CommandBar>
+    </Page.TopAppBar>
+    <ScrollViewer>
+        <StackPanel x:Name="ContenuPageConnexion" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <TextBlock x:Uid="ConnexionIdentifiant" Text="" FontSize="20" Margin="15,30,0,0" />
+            <TextBox  Text="{Binding Path=Identifiant,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="20" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+            <TextBlock x:Uid="ConnexionPassword" Text="" FontSize="20" Margin="15,30,0,0" />
+            <PasswordBox  Password="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="20" Margin="15,5,0,0" FontSize="15" Width="250" HorizontalAlignment="Left" Background="#FFAFD8FB" />
+            <Button x:Uid="ConnexionValidation" Content="" Command="{Binding Connexion}" Width="150" Background="#FF0097FF" Margin="50,25,0,0" />
+        </StackPanel>
+    </ScrollViewer>
 </Page>
