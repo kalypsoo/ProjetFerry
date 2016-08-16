@@ -21,17 +21,17 @@
         <StackPanel x:Name="ContenuPageInfoFerry" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             
             <TextBlock x:Uid="InfoFerryNomCompagnie" Text="" FontSize="20" Margin="15,30,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock Text="{Binding Path=NomCompagnie}" HorizontalAlignment="Center" FontSize="15"/>
             </Border>
             
             <TextBlock x:Uid="InfoFerryNomFerry" Text="" FontSize="20" Margin="15,20,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock Text="{Binding Path=NomFerry}" HorizontalAlignment="Center" FontSize="15"/>
             </Border>
             
             <TextBlock x:Uid="InfoFerryLieuDepart" Text="" FontSize="20" Margin="15,20,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock HorizontalAlignment="Center" FontSize="15" >
                     <Run x:Uid="InfoFerryPort" Text="" />
                     <Run Text="{Binding Path=VilleDepart}" />
@@ -41,7 +41,7 @@
             </Border>
 
             <TextBlock x:Uid="InfoFerryLieuArrivee" Text="" FontSize="20" Margin="15,20,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock HorizontalAlignment="Center" FontSize="15" >
                     <Run x:Uid="InfoFerryPort" Text="" />
                     <Run Text="{Binding Path=VilleArrivee}" />
@@ -51,22 +51,22 @@
             </Border>
 
             <TextBlock x:Uid="InfoFerryPrixEnfant" Text="" FontSize="20" Margin="15,20,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock Text="{Binding Path=PrixEnfant}" HorizontalAlignment="Center" FontSize="15"/>
             </Border>
 
             <TextBlock x:Uid="InfoFerryPrixAdulte" Text="" FontSize="20" Margin="15,20,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock Text="{Binding Path=PrixAdulte}" HorizontalAlignment="Center" FontSize="15"/>
             </Border>
 
             <TextBlock x:Uid="InfoFerryPrixVehicule" Text="" FontSize="20" Margin="15,20,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock Text="{Binding Path=PrixVehicule}" HorizontalAlignment="Center" FontSize="15"/>
             </Border>
 
             <TextBlock x:Uid="InfoFerryPrixRemorque" Text="" FontSize="20" Margin="15,20,0,0"/>
-            <Border BorderThickness="1" BorderBrush="Black" Width="250" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
+            <Border BorderThickness="1" BorderBrush="Black" Width="300" HorizontalAlignment="Left" Margin="15,5,0,0" CornerRadius="10" Background="#FFAFD8FB">
                 <TextBlock Text="{Binding Path=PrixRemorque}" HorizontalAlignment="Center" FontSize="15"/>
             </Border>
             
