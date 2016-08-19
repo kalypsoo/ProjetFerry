@@ -18,16 +18,12 @@ namespace Projet.VueModel
 {
     public class AjoutFerryVM : ViewModelBase, INotifyPropertyChanged
     {
-        private INavigationService _navigationService;
-        private RegexHelper regex;
-        private int idVilleDepart, idVilleArrivee;
-
+        private INavigationService _navigationService;           
 
         public AjoutFerryVM(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            Ajouter = new RelayCommand(AjouterFerry);
-            regex = new RegexHelper();
+            Ajouter = new RelayCommand(AjouterFerry);            
             TimeSpan mtn = DateTime.Now.TimeOfDay;
             HeureDepart = getHeureHHMM(mtn);
             HeureArrivee = getHeureHHMM(mtn);
@@ -89,11 +85,11 @@ namespace Projet.VueModel
                     IntCodeErreur reponseIdVilleDep = await serviceVille.getIdVille(PaysDepSelec, VilleDepSelec);
                     if (reponseIdVilleDep.codeErreur == 0)
                     {
-                        idVilleDepart = reponseIdVilleDep.entier;
+                        int idVilleDepart = reponseIdVilleDep.entier;
                         IntCodeErreur reponseIdVilleArr = await serviceVille.getIdVille(PaysArrSelec, villeArrSelec);
                         if (reponseIdVilleArr.codeErreur == 0)
                         {
-                            idVilleArrivee = reponseIdVilleArr.entier;
+                            int idVilleArrivee = reponseIdVilleArr.entier;
                             Ferry nouveauFerry = new Ferry(nomFerry, identifiantFerry, Double.Parse(tarifAdulte, CultureInfo.InvariantCulture), Double.Parse(tarifEnfant, CultureInfo.InvariantCulture), Double.Parse(tarifVehicule, CultureInfo.InvariantCulture), Double.Parse(tarifRemorque, CultureInfo.InvariantCulture), heureDepart, heureArrivee, int.Parse(quaiDepart), int.Parse(quaiArrivee), idVilleDepart, idVilleArrivee, ConnexionVM.TvaGerant, dateDepart);
                             int reponse = await serviceFerry.SetFerryBD(nouveauFerry);
                             if (reponse == 0)
@@ -494,6 +490,7 @@ namespace Projet.VueModel
 
         public string VerifierFormulaire()
         {
+            RegexHelper regex = new RegexHelper();
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             string messageErreur = "";
             DateTime mtn = DateTime.Today;
