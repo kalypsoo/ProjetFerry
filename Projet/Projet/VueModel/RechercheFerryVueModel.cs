@@ -206,15 +206,14 @@ namespace Projet.VueModel
 
         public RelayCommand Rechercher { get; set; }
 
-        private bool VerifierFormulaire()
+        public bool VerifierFormulaire()
         {
-            bool erreur = true;
             if (PaysDepSelec == PaysArrSelec && VilleDepSelec == VilleArrSelec)
-                erreur = false;
+                return false;
             if (DateTime.Compare(DateDepart, DateTime.Today) < 0)
-                erreur = false;
+                return false;
 
-            return erreur;
+            return true;
         }
 
         public async void AfficherResultat()
